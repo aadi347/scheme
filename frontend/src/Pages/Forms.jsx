@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
 import { FaMale, FaFemale } from "react-icons/fa";
 import SubmitButton from '../components/SubmitButton';
+import StatusBox from '../components/StatusBox';
 
 
 const Forms = () => {
     const [gender, setGender] = useState('');
     const [category, setCategory] = useState('');
     const [bpl, setBpl] = useState('');
+    const [status, setStatus] = useState(false);
+
+    
+
+    const handleSubmitButton = () => {
+        setStatus(true);
+    }
   return (
     <div className='mt-10 grid grid-cols-1 md:grid-cols-1 gap-4 px-10 py-10'>
         <div className='p-6 border rounded-2xl border-gray-200 py-10 min-h-[300px]'>
           <div>
         <h2 className="text-xl text-left font-semibold  mb-4 border-b border-gray-300 pb-4">Form Section</h2>
+        
           </div>
           <form className="grid grid-cols-1 gap-4">
           <div className="grid sm:grid-cols-2 gap-4 lg:grid-cols-2">
@@ -188,7 +197,7 @@ const Forms = () => {
             
             <div className="grid sm:grid-cols-2 gap-4 lg:grid-cols-2">
               <div className='flex items-center gap-2'>
-              <SubmitButton>Hello</SubmitButton>
+              <SubmitButton onClick={handleSubmitButton}  text="Submit" />
               </div>
 
               
@@ -196,6 +205,13 @@ const Forms = () => {
           </form>
         </div>
         
+        {status && (
+        <StatusBox
+          message="Form Submitted Successfully"
+          status="success"
+          onOk={() => setStatus(false)} // ✅ Corrected to hide the status box
+        />
+      )}
        
       </div>
   )
