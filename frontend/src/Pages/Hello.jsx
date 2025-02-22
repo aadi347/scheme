@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import NewForm from './NewForm'
+import RightBar from './RightBar.JSX';
 
 const Hello = () => {
 
+  
   const[isFormOpen, setFormOpen] = useState(false)
   
      const handleButtonClick = () => {
@@ -37,7 +39,7 @@ const Hello = () => {
     <div className="mt-5 max-w-2xl text-center mx-auto">
       <h1 className="block font-bold text-gray-500 text-4xl md:text-5xl lg:text-6xl ">
       Welcome to the Scheme details 
-        <span className="bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent">website</span>
+        <span className="bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent"> website</span>
       </h1>
     </div>
 
@@ -55,7 +57,7 @@ const Hello = () => {
       <button onClick={handleButtonClick} type="button" className="relative group p-2 ps-3 inline-flex items-center gap-x-2 text-sm font-mono rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
         Fill Form
         <span className="flex justify-center items-center bg-gray-200 rounded-md size-7 dark:bg-neutral-700 dark:text-neutral-400">
-          <svg className="shrink-0 size-4 group-hover:rotate-6 transition" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+          <svg className="shrink-0 size-4 group-hover:rotate-9 transition" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
         </span>
       </button>
     </div>
