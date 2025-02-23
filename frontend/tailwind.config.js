@@ -1,5 +1,6 @@
 import plugin from 'preline/plugin';
 
+
 export default {
   content: [
     "./index.html",

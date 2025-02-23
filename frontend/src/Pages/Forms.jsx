@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FaMale, FaFemale } from "react-icons/fa";
-import SubmitButton from '../components/SubmitButton';
-import StatusBox from '../components/StatusBox';
+
 
 
 const Forms = () => {

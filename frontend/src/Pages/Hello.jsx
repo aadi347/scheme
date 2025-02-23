@@ -70,7 +70,7 @@ const Hello = () => {
       
     </div>
   </div>
-  {isFormOpen && <NewForm />}
+  {isFormOpen && <NewForm setFormOpen={setFormOpen} />}
 </div>
 
   )

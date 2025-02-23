@@ -1,15 +1,18 @@
-import React from "react";
+import {useState} from "react";
+import PopupDialog from "../components/PopupDialog";
 
 const RightBar = ({ isActive }) => {
+
+  const [isPopOpen, setIsPopOpen] = useState(false);
     
   return (
     <div
-      className={`fixed right-0 top-0 h-full w-64 bg-gray-500 text-white shadow-lg transition-transform duration-500 ${
+      className={`fixed right-0 top-0 h-full w-64 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80 text-white shadow-lg transition-transform duration-500 ${
         isActive ? "translate-x-0" : "translate-x-full"
       }`}
     >
       <div className="p-5 rounded-lg">
-  <h2 className="text-xl font-bold mb-4">Available Schemes</h2>
+  <h2 className="text-xl font-bold mb-4 border-b py-3">Available Schemes</h2>
   
 
   {[
@@ -22,7 +25,7 @@ const RightBar = ({ isActive }) => {
     <div key={scheme.id} className="mb-4">
       <h3 className="text-lg font-semibold flex justify-between items-center">
         {scheme.name}
-        <button className="text-indigo-300 hover:text-indigo-700 flex items-center">
+        <button onClick={() => setIsPopOpen(true)} className="text-indigo-300 hover:text-indigo-700 flex items-center">
           Apply <span className="mdi mdi-arrow-right ml-2"></span>
         </button>
       </h3>
@@ -31,7 +34,12 @@ const RightBar = ({ isActive }) => {
     </div>
   ))}
 </div>
-
+  <PopupDialog
+        isOpen={isPopOpen}
+        onClose={() => setIsPopOpen(false)}
+        heading="User Information"
+        phoneNumber="+91 98765 43210"
+      />
     </div>
   );
 };
