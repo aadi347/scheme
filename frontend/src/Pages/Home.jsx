@@ -1,78 +1,79 @@
 import React, { useState } from 'react';
-import Forms from "./Forms.jsx";
+import NewForm from './NewForm'
+import RightBar from './RightBar.JSX';
 
 const Home = () => {
 
-    const[isFormOpen, setFormOpen] = useState(false)
-
-   const handleButtonClick = () => {
-        setFormOpen(true)
-    }
+  
+  const[isFormOpen, setFormOpen] = useState(false)
+  
+     const handleButtonClick = () => {
+          setFormOpen(true)
+      }
 
   return (
-    <div>
+ 
+<div className="relative overflow-hidden before:absolute before:top-0 before:start-1/2 before:bg-[url('https://preline.co/assets/svg/examples/polygon-bg-element.svg')] before:bg-no-repeat before:bg-top before:bg-cover before:size-full before:-z-[1] before:transform before:-translate-x-1/2">
+  <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
+  
+
+    <div className="flex justify-center py-3">
+    <img 
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Seal_of_Bihar.svg/1200px-Seal_of_Bihar.svg.png"
+            alt="Logo"
+            className="h-16 w-16 object-contain border rounded-full border-gray-400 py-2 px-2" 
+        />
+    </div>
+
+  <div className="flex justify-center">
+      <a className="inline-flex items-center gap-x-2 bg-white border border-gray-200 text-sm text-gray-800 p-1 ps-3 rounded-full transition hover:border-gray-300 focus:outline-none focus:border-gray-300 dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-200 dark:hover:border-neutral-600 dark:focus:border-neutral-600" href="#">
+        New Scheme - Get Started
+        <span className="py-1.5 px-2.5 inline-flex justify-center items-center gap-x-2 rounded-full bg-gray-200 font-semibold text-sm text-gray-600 dark:bg-neutral-700 dark:text-neutral-400">
+          <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </span>
+      </a>
+    </div>
+
+
+
+    <div className="mt-5 max-w-2xl text-center mx-auto">
+      <h1 className="block font-bold text-gray-500 text-4xl md:text-5xl lg:text-6xl ">
+      Welcome to the Scheme details 
+        <span className="bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent"> website</span>
+      </h1>
+    </div>
+
+
+    <div className="mt-5 max-w-3xl text-center mx-auto">
+      <p className="text-lg text-gray-600 dark:text-neutral-400">Welcome to the official government scheme information portal. Our platform is designed to provide citizens with accurate and up-to-date details about various welfare programs.</p>
+    </div>
+
+
+    <div className="mt-8 gap-3 flex justify-center">
+      <a className="inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-violet-600 hover:to-blue-600 border border-transparent text-white text-sm font-medium rounded-md focus:outline-none focus:from-violet-600 focus:to-blue-600 py-3 px-4" href="#">
+        Get started
+        <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <button onClick={handleButtonClick} type="button" className="relative group p-2 ps-3 inline-flex items-center gap-x-2 text-sm font-mono rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
+        Fill Form
+        <span className="flex justify-center items-center bg-gray-200 rounded-md size-7 dark:bg-neutral-700 dark:text-neutral-400">
+          <svg className="shrink-0 size-4 group-hover:rotate-9 transition" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+        </span>
+      </button>
+    </div>
+
+
+    <div className="mt-5 flex justify-center items-center gap-x-1 sm:gap-x-3">
       
+
      
-     <div className="mt-10 grid grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 md:grid-cols-2s  gap-4 px-10 ">
-        {/* left hand side div */}
-        <div className=" rounded-lg">
-  <div className='text-left p-6'>
-    <h2 className="text-2xl text-left px-10 font-semibold  mb-4 pb-4">Welcome to the Scheme details website</h2>
-    <p className='px-10'>
-      Welcome to the official government scheme information portal. Our platform is designed to provide citizens with accurate and up-to-date details about various welfare programs. Explore eligibility criteria, benefits, and application processes—all in one place. Empowering every citizen with the right information, effortlessly.
-    </p>
-    
-    {/* New Explore Button */}
-    <div className='text-left px-10'>
-
-  <div className='mt-10'> 
-  <div className="relative group">
-    <button
-      onClick={handleButtonClick} className="relative inline-block p-px font-semibold leading-6 text-white bg-neutral-900 shadow-2xl cursor-pointer rounded-2xl transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:shadow-emerald-600"
-    >
-      <span
-        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500 via-cyan-500 to-sky-600 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-      ></span>
-      <span className="relative z-10 block px-6 py-3 rounded-2xl bg-neutral-950">
-        <div className="relative z-10 flex items-center space-x-3">
-          <span
-            className="transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-emerald-300"
-            >Fill Form</span
-          >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="w-7 h-7 transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-emerald-300"
-          >
-            <path
-              d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-            ></path>
-          </svg>
-        </div>
-      </span>
-    </button>
-  </div>
-  </div> 
-
-
+      
     </div>
   </div>
+  {isFormOpen && <NewForm setFormOpen={setFormOpen} />}
 </div>
 
-        {/* right hand side div */}
-        <div className="rounded-lg">
-            <img 
-            src="https://img.freepik.com/free-vector/hr-manager-with-employee-interview-business-flow-chart-employee-assessment-software-hr-company-system-employee-check-programme-concept_335657-403.jpg?t=st=1740053432~exp=1740057032~hmac=a915d30ec31b2bcf04a68ffab6d650765b4b4d4291eb3055993dcb7c480f5679&w=1800"
-            alt="Government Schemes"
-            className="h-96 w-full object-cover rounded-lg"
-            />
-        </div>
-     </div>
-    
-    {isFormOpen && <Forms />}
-    </div>
-  );
+  )
 }
 
-export default Home;
+export default Home
