@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import NewForm from './NewForm'
 import RightBar from './RightBar.JSX';
+// import MultiStepForm from './MultiStepForm.jsx';
 
 const Home = () => {
 
@@ -65,7 +66,7 @@ const Home = () => {
 
     <div className="mt-5 flex justify-center items-center gap-x-1 sm:gap-x-3">
       
-
+    {/* <MultiStepForm /> */}
      
       
     </div>
