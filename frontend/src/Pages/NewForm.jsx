@@ -90,7 +90,7 @@ const handleChange = (e) => {
 
       <div className="min-w-screen min-h-screen flex items-center justify-center px-5 py-5">
         <motion.div
-          className="bg-slate-50 border  text-gray-500 rounded-3xl w-full overflow-hidden ${isRightBarActive "
+          className="bg-white border  text-gray-500 rounded-3xl w-full overflow-hidden ${isRightBarActive "
           style={{ maxWidth: "1000px" }}
           initial={{ opacity: 0, y: -20, x: 0 }}
           animate={{ opacity: 1, y: 0, x: isRightBarActive ? -150 : 0 }}
@@ -339,13 +339,9 @@ const handleChange = (e) => {
                   >
                 </button>
                 
-                {/* {isFormOpen && <NewForm setFormOpen={setFormOpen} />} */}
-
-                {/* {isLoadingPopOpen && <Loader setIsLoadingPopOpen={setIsLoadingPopOpen} />} */}
+              
                 {isLoadingPopOpen && (
-        /* From Uiverse.io by jubayer-10 */ 
-
-  <Loader />
+                <Loader />
 
 
       )}
