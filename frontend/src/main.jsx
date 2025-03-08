@@ -5,9 +5,7 @@ import 'preline/preline'; // Import Preline
 import App from './App.jsx';
 
 const Root = () => {
-  useEffect(() => {
-    import('preline/preline').then((module) => module.default());
-  }, []);
+  
 
   return <App />;
 };

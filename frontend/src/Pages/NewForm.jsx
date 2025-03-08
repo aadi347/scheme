@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import RightBar from "./RightBar.JSX";
 import { motion } from "framer-motion"; 
 import { GrFormNext, GrFormPrevious,GrFormNextLink } from "react-icons/gr";
+import Loader from "../components/Loader";
+import events from "inquirer/lib/utils/events";
 
 
 const NewForm = ({setFormOpen}) => {
@@ -19,7 +21,9 @@ const NewForm = ({setFormOpen}) => {
 
   
   const [isRightBarActive, setIsRightBarActive] = useState(false);
-  const [step, setStep] = useState(1); 
+  const [isLoadingPopOpen, setIsLoadingPopOpen] = useState(false);
+  
+  // const [step, setStep] = useState(1); 
   const [formData , setFormData] = useState({
     schemeCategory: "",
     name : "",
@@ -36,12 +40,17 @@ const NewForm = ({setFormOpen}) => {
     block: "",
   })
 
+  
   const [selectedOptions, setSelectedOptions] = useState({
     step1: null,
     step2: null,
     step3: null,
   });
 
+  const handleSubmitClick = (e) => {
+    e.preventDefault();
+    setIsLoadingPopOpen(true);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,14 +61,6 @@ const NewForm = ({setFormOpen}) => {
     setFormOpen(false);
   };
 
-  const nextStep = () => {
-    setStep((prev) => prev + 1);
-  };
-
-  // Move to the previous step
-  const prevStep = () => {
-    setStep((prev) => prev - 1);
-  };
 
   const handleSelection = (stepKey, option) => {
     setSelectedOptions({ ...selectedOptions, [stepKey]: option });
@@ -76,25 +77,10 @@ const handleChange = (e) => {
     alert(`Captured Data: ${JSON.stringify(formData, null, 2)}`); 
   };
 
+
        
 
-  useEffect(() => {
-
-    const alpineScript = document.createElement("script");
-    alpineScript.src = "https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js";
-    alpineScript.defer = true;
-    document.body.appendChild(alpineScript);
-
-    const zxcvbnScript = document.createElement("script");
-    zxcvbnScript.src = "https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js";
-    document.body.appendChild(zxcvbnScript);
-
-    return () => {
-      document.body.removeChild(alpineScript);
-      document.body.removeChild(zxcvbnScript);
-    };
-  }, []);
-
+  
   return (
     <>
       <link
@@ -104,7 +90,7 @@ const handleChange = (e) => {
 
       <div className="min-w-screen min-h-screen flex items-center justify-center px-5 py-5">
         <motion.div
-          className="bg-slate-50  text-gray-500 rounded-3xl w-full overflow-hidden ${isRightBarActive "
+          className="bg-slate-50 border  text-gray-500 rounded-3xl w-full overflow-hidden ${isRightBarActive "
           style={{ maxWidth: "1000px" }}
           initial={{ opacity: 0, y: -20, x: 0 }}
           animate={{ opacity: 1, y: 0, x: isRightBarActive ? -150 : 0 }}
@@ -117,14 +103,15 @@ const handleChange = (e) => {
           <div className="md:flex w-full">
             {/* Form Content */}
             <div className="w-full md:w-full py-10 px-5 md:px-10">
-              <h2 className="text-2xl font-bold mb-5 text-left border-b border-gray-300 py-3">
+              <h2 className="text-2xl font-bold text-left  border-gray-300 py-3">
                 Fill The Form
               </h2>
-              <form onSubmit={handleFormSubmit}>
+              <p className="text-xs border-b mb-5 py-2.5 font-semibold text-gray-400 text-left">Choose Your Scheme Category Choose Your Scheme Category Choose Your Scheme Category Choose Your Scheme Category</p>
+              <form >
               <div>
 
 
-              {step === 1 && (
+           
         <div>
           <label className="text-xs font-semibold px-1 mb-2 block">
             Choose Your Scheme Category
@@ -135,12 +122,11 @@ const handleChange = (e) => {
               <i className="mdi mdi-city text-gray-400 text-lg"></i>
             </div>
 
-            {/* ✅ Fix: Added correct state binding & handleChange */}
             <select
               value={formData.schemeCategory}
               onChange={handleChange}
               name="schemeCategory"
-              className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+              className="w-full -ml-10 pl-10  pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
             >
               <option value="">Select Scheme Category</option>
               <option value="Business">Business</option>
@@ -152,41 +138,11 @@ const handleChange = (e) => {
             </select>
           </div>
 
-          {/* ✅ Fix: Disable "Next" button based on formData.schemeCategory */}
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              nextStep();
-            }}
-            disabled={!formData.schemeCategory} // ✅ Disable until category is selected
-            className={`mt-4 px-4 py-2 rounded flex items-center justify-center gap-2 ${
-              formData.schemeCategory
-                ? "bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-violet-600 hover:to-blue-600 text-white"
-                : "bg-gray-300 cursor-not-allowed"
-            }`}
-          >
-            Next
-            <GrFormNextLink className="text-xl" />
-          </button>
-        </div>
-      )}
-
-      {/* ✅ Step 2: Show selected category */}
-      {step === 2 && (
-        <div>
-          <h2 className="text-xl font-bold">Step 2</h2>
-          <p className="mt-2">You selected: {formData.schemeCategory}</p>
-        </div>
-      )}
-
-
-
-                {step === 2 && (
                     <div className="flex -mx-3">
                         <div className="w-1/2 px-3 mb-5">
                             <label for="" className="text-xs font-semibold px-1">Enter Your name</label>
                             <div className="flex">
-                                <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i className="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
+                                <div className="w-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i className="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
                                 <input value={formData.name} onChange={handleChange} name="name" type="text" className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Aditya" />
                             </div>
                         </div>
@@ -198,26 +154,12 @@ const handleChange = (e) => {
                             </div>
                         </div>
                         <div className="flex justify-between gap-4">
-                        <button
-                        onClick={prevStep}
-                        className="flex items-center px-2 py-2 rounded-lg bg-gray-500 text-white shadow-md hover:bg-gray-600 transition-all"
-                          >
-                          <GrFormPrevious className="text-lg" />
-    Previous
-  </button>
-
-  <button
-    onClick={nextStep}
-    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-violet-600 hover:to-blue-600 text-white shadow-md hover:bg-blue-600 transition-all"
-  >
-    Next
-    <GrFormNext className="text-lg" />
-  </button>
-</div>
+                       
+                      </div>
                     </div>
-                    )}
+                
                     {/* phone number and email id  */}
-                    {step === 3 && (
+                    
                     <div className="flex -mx-3">
                         <div className="w-1/2 px-3 mb-5">
                             <label for="" className="text-xs font-semibold px-1">Enter Your Phone Number</label>
@@ -233,28 +175,11 @@ const handleChange = (e) => {
                                 <input value={formData.email} onChange={handleChange} name="email" type="email" className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="example@gmail.com" />
                             </div>
                         </div>
-                        <div className="flex justify-between gap-4">
-  <button
-    onClick={prevStep}
-    className="flex items-center px-2 py-2 rounded-lg bg-gray-500 text-white shadow-md hover:bg-gray-600 transition-all"
-  >
-    <GrFormPrevious className="text-lg" />
-    Previous
-  </button>
-
-  <button
-    onClick={nextStep}
-    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-violet-600 hover:to-blue-600 text-white shadow-md hover:bg-blue-600 transition-all"
-  >
-    Next
-    <GrFormNext className="text-lg" />
-  </button>
-</div>
+                       
                     </div>
-                    )}
+                   
 
-                    {step === 4 && (
-
+                  
                     
                     <div className="flex -mx-3">
                         <div className="w-1/2 px-3 mb-5">
@@ -283,27 +208,11 @@ const handleChange = (e) => {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex justify-between gap-4">
-  <button
-    onClick={prevStep}
-    className="flex items-center px-2 py-2 rounded-lg bg-gray-500 text-white shadow-md hover:bg-gray-600 transition-all"
-  >
-    <GrFormPrevious className="text-lg" />
-    Previous
-  </button>
-
-  <button
-    onClick={nextStep}
-    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-violet-600 hover:to-blue-600 text-white shadow-md hover:bg-blue-600 transition-all"
-  >
-    Next
-    <GrFormNext className="text-lg" />
-  </button>
-</div>
+                       
                     </div>
-                      )}
+                
 
-                      {step === 5 && (
+                
                     <div className="flex -mx-3">
 
                     <div className="w-1/2 px-3 mb-5">
@@ -332,28 +241,12 @@ const handleChange = (e) => {
                                 </select>
                             </div>
                         </div>    
-                        <div className="flex justify-between gap-4">
-  <button
-    onClick={prevStep}
-    className="flex items-center px-2 py-2 rounded-lg bg-gray-500 text-white shadow-md hover:bg-gray-600 transition-all"
-  >
-    <GrFormPrevious className="text-lg" />
-    Previous
-  </button>
-
-  <button
-    onClick={nextStep}
-    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-violet-600 hover:to-blue-600 text-white shadow-md hover:bg-blue-600 transition-all"
-  >
-    Next
-    <GrFormNext className="text-lg" />
-  </button>
-</div>
+                       
                     </div>
 
-                    )}
+                
 
-                    {step === 6 && (
+                 
 
                     <div className="flex -mx-3">
 
@@ -381,28 +274,12 @@ const handleChange = (e) => {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex justify-between gap-4">
-  <button
-    onClick={prevStep}
-    className="flex items-center px-2 py-2 rounded-lg bg-gray-500 text-white shadow-md hover:bg-gray-600 transition-all"
-  >
-    <GrFormPrevious className="text-lg" />
-    Previous
-  </button>
-
-  <button
-    onClick={nextStep}
-    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-violet-600 hover:to-blue-600 text-white shadow-md hover:bg-blue-600 transition-all"
-  >
-    Next
-    <GrFormNext className="text-lg" />
-  </button>
-</div>
+                      
                     </div>
 
-                    )}
+            
 
-                    {step === 7 && (
+                   
                     <div className="flex -mx-3">
                     <div className="w-1/2 px-3 mb-5">
                             <label for="" className="text-xs font-semibold px-1">Choose Your District</label>
@@ -431,26 +308,54 @@ const handleChange = (e) => {
                                 </select>
                             </div>
                         </div>         
-                        <div className="flex -mx- text-left">
-                        <div className="w-full mb-5 ">
-                        <button
-                        onClick={handleSubmit}
-                        className="flex items-center justify-center w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg py-3 font-semibold gap-2"
-                        >
-                        SUBMIT NOW
-                        <i className="mdi mdi-send-outline text-lg"></i>
-                        </button>
-
                         
-                        </div>
-                    </div>       
+                          
                     </div>
-                  )}
+                
 
                     
                 </div>
+               
+                </div>
+               
+         
+                <button
+                onClick={handleSubmitClick}
+                className="overflow-hidden relative w-32 p-2 h-12 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group"
+                >
+                 Submit
+                  <span
+                    className="absolute w-36 h-32 -top-8 -left-2 bg-white rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-left"
+                  ></span>
+                  <span
+                    className="absolute w-36 h-32 -top-8 -left-2 bg-purple-400 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-left"
+                  ></span>
+                  <span
+                  className="absolute w-36 h-32 -top-8 -left-2 bg-purple-600 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-left"
+                  ></span>
+                  <span
+                    className="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-6 z-10"
+                    >Submit</span
+                  >
+                </button>
+                
+                {/* {isFormOpen && <NewForm setFormOpen={setFormOpen} />} */}
+
+                {/* {isLoadingPopOpen && <Loader setIsLoadingPopOpen={setIsLoadingPopOpen} />} */}
+                {isLoadingPopOpen && (
+        /* From Uiverse.io by jubayer-10 */ 
+
+  <Loader />
+
+
+      )}
+              
+
+
               </form>
+              
             </div>
+            
           </div>
         </motion.div>
 
