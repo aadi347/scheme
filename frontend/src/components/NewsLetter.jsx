@@ -4,7 +4,7 @@ const NewsLetter = () => {
   return (
   
 <div className="flex flex-col items-center justify-center light px-4">
-  <div className="w-full max-w-md bg-white rounded-lg border border-gray-300 p-6">
+  <div className="w-full max-w-md bg-white rounded-xl border border-gray-200 p-6">
     <h2 className="text-2xl font-bold text-gray-600 mb-4">
       Subscribe to Our Newsletter
     </h2>
@@ -25,7 +25,7 @@ const NewsLetter = () => {
     </form>
 
     <div className="flex justify-center mt-4">
-      <a href="#" className="text-sm text-gray-600 hover:underline"
+      <a href="#" className="text-sm text-gray-300 hover:underline"
         >Privacy Policy</a
       >
     </div>

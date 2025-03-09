@@ -90,7 +90,7 @@ const handleChange = (e) => {
 
       <div className="min-w-screen min-h-screen flex items-center justify-center px-5 py-5">
         <motion.div
-          className="bg-white border  text-gray-500 rounded-3xl w-full overflow-hidden ${isRightBarActive "
+          className="bg-white border border-gray-200  text-gray-500 rounded-3xl w-full overflow-hidden ${isRightBarActive "
           style={{ maxWidth: "1000px" }}
           initial={{ opacity: 0, y: -20, x: 0 }}
           animate={{ opacity: 1, y: 0, x: isRightBarActive ? -150 : 0 }}
@@ -103,10 +103,10 @@ const handleChange = (e) => {
           <div className="md:flex w-full">
             {/* Form Content */}
             <div className="w-full md:w-full py-10 px-5 md:px-10">
-              <h2 className="text-2xl font-bold text-left  border-gray-300 py-3">
+              <h2 className="text-2xl font-bold text-left font-mono  border-gray-300 py-3">
                 Fill The Form
               </h2>
-              <p className="text-xs border-b mb-5 py-2.5 font-semibold text-gray-400 text-left">Choose Your Scheme Category Choose Your Scheme Category Choose Your Scheme Category Choose Your Scheme Category</p>
+              <p className="text-xs border-b border-gray-200 mb-5 py-2.5 font-semibold text-gray-400 text-left">Choose Your Scheme Category Choose Your Scheme Category Choose Your Scheme Category Choose Your Scheme Category</p>
               <form >
               <div>
 
